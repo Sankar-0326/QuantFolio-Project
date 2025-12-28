@@ -33,5 +33,54 @@ It features a high-performance **FastAPI** backend for mathematical modeling and
 
 ### 1. Clone the Repository
 ```bash
-git clone [https://github.com/yourusername/quantfolio.git](https://github.com/yourusername/quantfolio.git)
+git clone https://github.com/Sankar-0326/QuantFolio-Project.git
 cd quantfolio
+```
+
+### 2. Backend Setup
+Navigate to the backend folder and set up the Python environment:
+
+```bash
+cd backend
+
+# Create virtual environment
+python3 -m venv venv
+
+# Activate virtual environment
+source venv/bin/activate  # (On Windows use: venv\Scripts\activate)
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Start the API server
+uvicorn main:app --reload
+```
+
+### 3. Frontend Setup
+Open a new terminal, navigate to the frontend folder, and launch the dashboard:
+
+```bash
+cd frontend
+
+# Install Node.js dependencies
+npm install
+
+# Start the React development server
+npm start
+```
+
+## 📸 Screenshots
+*![alt text](image.png)
+![alt text](image-1.png)*
+
+
+## 🧠 The Math Behind It
+The core logic relies on the **Sharpe Ratio** formula to measure risk-adjusted return:
+
+$$\text{Sharpe Ratio} = \frac{R_p - R_f}{\sigma_p}$$
+
+Where:
+* $R_p$ = Expected Portfolio Return
+* $R_f$ = Risk-Free Rate (assumed 2%)
+* $\sigma_p$ = Portfolio Standard Deviation (Volatility)
+
