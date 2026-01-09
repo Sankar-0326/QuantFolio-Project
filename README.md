@@ -13,6 +13,7 @@ It features a high-performance **FastAPI** backend for mathematical modeling and
 * **Mathematical Engine:** Vectorized calculation of Covariance Matrix, Standard Deviation, and Annualized Returns using `NumPy` & `Pandas`.
 * **Risk Analysis:** Real-time computation of **Sharpe Ratio** to evaluate risk-vs-reward efficiency.
 * **Correlation Heatmap:** Interactive matrix visualizing asset dependency (Pearson correlation) to aid in diversification.
+* **AI Growth Projection:** Machine Learning model using **Linear Regression** to forecast portfolio growth for the next 30 days.
 * **Growth Projection:** Time-series forecasting simulating "Growth of $10k" based on historical performance.
 * **Senior-Level UI:** Professional Dark Mode dashboard using `Material UI` and `Recharts` with responsive grid layouts.
 
@@ -20,7 +21,7 @@ It features a high-performance **FastAPI** backend for mathematical modeling and
 ### **Backend (The Brain)**
 * **Language:** Python 3.9+
 * **Framework:** FastAPI (Async/Await architecture)
-* **Data Science:** NumPy (Matrix Math), Pandas (Time-series), Scikit-learn
+* **Data Science:** NumPy (Matrix Math), Pandas (Time-series), Scikit-learn (Machine Learning)
 * **Data Source:** Yahoo Finance API (`yfinance`)
 
 ### **Frontend (The Face)**
@@ -73,6 +74,8 @@ npm start
 *![alt text](image.png)
 ![alt text](image-1.png)*
 
+## After Predictive - AI
+*<img width="2880" height="1118" alt="image" src="https://github.com/user-attachments/assets/6ea6ac3e-d5b9-4782-9928-cb6739704285" />*
 
 ## 🧠 The Math Behind It
 The core logic relies on the **Sharpe Ratio** formula to measure risk-adjusted return:
