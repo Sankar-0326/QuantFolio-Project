@@ -227,7 +227,6 @@ function App() {
             </Grid>
 
             {/* --- BOTTOM ROW: FLEXBOX LAYOUT (Fixed + Fluid) --- */}
-            {/* This replaces Grid for the bottom row to guarantee the chart takes all remaining space */}
             <Box 
               display="flex" 
               flexDirection={isDesktop ? 'row' : 'column'} 
@@ -281,24 +280,53 @@ function App() {
               <Box sx={{ flexGrow: 1, width: isDesktop ? 'auto' : '100%' }}>
                 <Paper elevation={0} sx={bottomCardStyle}>
                   <Box display="flex" justifyContent="space-between" alignItems="center" mb={4}>
-                    <Typography variant="h6" sx={{ fontWeight: 700, color: THEME.textMain }}>Growth Projection ($10k)</Typography>
-                    <Chip label="1 Year Historical" size="small" sx={{ bgcolor: 'rgba(255,255,255,0.05)', color: THEME.textLight, fontWeight: 600 }} />
+                    <Typography variant="h6" sx={{ fontWeight: 700, color: THEME.textMain }}>Growth Forecast ($10k)</Typography>
+                    <Chip label="1 Year + 30 Day Prediction" size="small" sx={{ bgcolor: 'rgba(255,255,255,0.05)', color: THEME.textLight, fontWeight: 600 }} />
                   </Box>
                   
+                  {/* CHART AREA with AI FORECASTING */}
                   <Box sx={{ width: '100%', height: 320 }}>
                     <ResponsiveContainer width="100%" height="100%">
                       <AreaChart data={results.growth_chart}>
                         <defs>
-                          <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
+                          <linearGradient id="colorHistorical" x1="0" y1="0" x2="0" y2="1">
                             <stop offset="5%" stopColor={THEME.primary} stopOpacity={0.3}/>
                             <stop offset="95%" stopColor={THEME.primary} stopOpacity={0}/>
+                          </linearGradient>
+                          <linearGradient id="colorPredicted" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="5%" stopColor={THEME.secondary} stopOpacity={0.3}/>
+                            <stop offset="95%" stopColor={THEME.secondary} stopOpacity={0}/>
                           </linearGradient>
                         </defs>
                         <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.05)" />
                         <XAxis dataKey="date" tick={{fontSize: 12, fill: THEME.textLight}} minTickGap={40} axisLine={false} tickLine={false} />
                         <YAxis domain={['auto', 'auto']} tickFormatter={(val) => `$${val/1000}k`} tick={{fontSize: 12, fill: THEME.textLight}} axisLine={false} tickLine={false} />
-                        <Tooltip contentStyle={{ borderRadius: '12px', bgcolor: THEME.cardBg, border: '1px solid rgba(255,255,255,0.1)' }} itemStyle={{ color: THEME.primary }} />
-                        <Area type="monotone" dataKey="value" stroke={THEME.primary} strokeWidth={3} fillOpacity={1} fill="url(#colorValue)" />
+                        <Tooltip contentStyle={{ borderRadius: '12px', bgcolor: THEME.cardBg, border: '1px solid rgba(255,255,255,0.1)' }} itemStyle={{ color: THEME.textMain }} />
+                        
+                        {/* Historical Data Line (Solid) */}
+                        <Area 
+                          type="monotone" 
+                          dataKey="value" 
+                          data={results.growth_chart.filter(d => d.type === 'Historical')}
+                          stroke={THEME.primary} 
+                          strokeWidth={3} 
+                          fillOpacity={1} 
+                          fill="url(#colorHistorical)" 
+                          name="Historical"
+                        />
+                        
+                        {/* AI Prediction Line (Dotted) */}
+                        <Area 
+                          type="monotone" 
+                          dataKey="value" 
+                          data={results.growth_chart.filter(d => d.type === 'Predicted' || d === results.growth_chart.findLast(x => x.type === 'Historical'))} 
+                          stroke={THEME.secondary} 
+                          strokeWidth={3} 
+                          strokeDasharray="5 5" 
+                          fillOpacity={1} 
+                          fill="url(#colorPredicted)" 
+                          name="AI Forecast"
+                        />
                       </AreaChart>
                     </ResponsiveContainer>
                   </Box>
