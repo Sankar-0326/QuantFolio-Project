@@ -1,0 +1,6 @@
+screenshots/
+__pycache__/
+venv/
+node_modules/
+.DS_Store
+backend/__pycache__/
