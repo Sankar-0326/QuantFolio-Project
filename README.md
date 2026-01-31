@@ -76,12 +76,10 @@ npm start
 
 ## 📸 Screenshots
 
-![Asset Search](screenshots/dashboard.png)
-![Analysis](screenshots/middle_section.png)
-![Economic Calendar](screenshots/live_news.png)
+![Asset Search](dashboard.png)
+![Analysis](middle_section.png)
+![Economic Calendar](live_news.png)
 
-## After Predictive - AI
-*<img width="2880" height="1118" alt="image" src="https://github.com/user-attachments/assets/6ea6ac3e-d5b9-4782-9928-cb6739704285" />*
 
 ## 🧠 The Math Behind It
 The core logic relies on the **Sharpe Ratio** formula to measure risk-adjusted return:
